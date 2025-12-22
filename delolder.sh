@@ -46,10 +46,12 @@ for dir in "${dirs[@]}"; do
         continue
     fi
 
-    if [ $d -eq 1 ]; then
+    if [ $v -eq 0 ] && [ $d -eq 0 ]; then
         find "$dir" -type f -mtime "+$days"
+    elif [ $d -eq 1 ]; then
+        find "$dir" -type f -mtime "+$days" -print
     elif [ $v -eq 1 ]; then
-        find "$dir" -type f -mtime "+$days" -print -delete
+	find "$dir" -type f -mtime "+$days" -print -delete
     fi
 done
 
